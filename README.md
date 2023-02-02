@@ -18,7 +18,7 @@ You will decide to whether use class/interface/struct for each situation.
 
 ## Ecommerce Website suggestions (or come up with your own design)
 
-- User (consider different types of User)
+- User (consider different types of User) - 
 - Product
 - Category
 - Cart
