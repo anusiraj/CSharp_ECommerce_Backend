@@ -1,9 +1,9 @@
 using static System.Console;
 using System;
 using Enums.UserRole;
-namespace Models.User
+namespace Models.UserModel
 {
-  public class UserModel
+  public class User
   {
     public int Id { get; init; }
     public string FirstName { get; set; }
@@ -12,9 +12,9 @@ namespace Models.User
     public string Password { get; set; }
     public string Image { get; set; }
     public UserRole Role { get; init; }
-    public List<UserModel> UserData;
+    public List<User> UserData;
 
-    public UserModel(int id, string firstname, string lastname, string email, string password, string image, UserRole role)
+    public User(int id, string firstname, string lastname, string email, string password, string image, UserRole role)
     {
       Id = id;
       FirstName = firstname;
@@ -24,18 +24,18 @@ namespace Models.User
       Image = image;
       Role = role;
     }
-    public UserModel()
+    public User()
     {
     }
 
     public static void GetAllUser()
     {
-        var users = new List<UserModel>{
-            new UserModel{Id = 1, FirstName = "Anu ",LastName = "Siraj", Email ="anu.jencir@gmail.com", 
+        var users = new List<User>{
+            new User{Id = 1, FirstName = "Anu ",LastName = "Siraj", Email ="anu.jencir@gmail.com", 
             Password = "anu@123", Image = "https://ibb.co/dJs620K", Role = UserRole.Customer},
-            new UserModel{Id = 2, FirstName = "Shinu ", LastName = "Siraj", Email ="shinu.anas@gmail.com", 
+            new User{Id = 2, FirstName = "Shinu ", LastName = "Siraj", Email ="shinu.anas@gmail.com", 
             Password = "shinu@123", Image = "https://ibb.co/dJs620K", Role = UserRole.Customer},
-            new UserModel{Id = 3, FirstName = "Shamon ", LastName = "Siraj", Email ="shamon.siraj@gmail.com", 
+            new User{Id = 3, FirstName = "Shamon ", LastName = "Siraj", Email ="shamon.siraj@gmail.com", 
             Password = "shamon@123", Image = "https://ibb.co/dJs620K", Role = UserRole.Customer},
             };
 		
@@ -55,7 +55,7 @@ namespace Models.User
     {
       WriteLine("Return user role found by id");
     }
-    public static void CreateUser(UserModel data)
+    public static void CreateUser(User data)
     {
         WriteLine("Creates User");
     }

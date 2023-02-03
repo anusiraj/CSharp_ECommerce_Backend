@@ -1,6 +1,6 @@
 using static System.Console;
 using Enums.UserRole;
-using Models.User;
+using Models.UserModel;
 
 namespace Controllers.UserController
 {
@@ -17,7 +17,7 @@ namespace Controllers.UserController
     {
       try
       {
-        UserModel.GetAllUser();
+        User.GetAllUser();
       }
       catch (Exception e)
       {
@@ -29,7 +29,7 @@ namespace Controllers.UserController
     {
       try
       {
-        UserModel.GetUserById(id);
+        User.GetUserById(id);
       }
       catch (Exception e)
       {
@@ -41,7 +41,7 @@ namespace Controllers.UserController
     {
       try
       {
-        UserModel.GetUserByEmail(email);
+        User.GetUserByEmail(email);
       }
       catch (Exception e)
       {
@@ -53,7 +53,7 @@ namespace Controllers.UserController
     {
       try
       {
-        UserModel.GetUserRole(id);
+        User.GetUserRole(id);
       }
       catch (Exception e)
       {
@@ -61,11 +61,11 @@ namespace Controllers.UserController
         throw;
       }
     }
-    public void CreateUser(UserModel data)
+    public void CreateUser(User data)
     {
       try
       {
-        UserModel.CreateUser(data);
+        User.CreateUser(data);
       }
       catch (Exception e)
       {
@@ -76,7 +76,7 @@ namespace Controllers.UserController
     {
       try
       {
-        UserModel.UpdateUser(id);
+        User.UpdateUser(id);
       }
       catch (Exception e)
       {
@@ -87,7 +87,7 @@ namespace Controllers.UserController
     {
       try
       {
-        UserModel.DeleteUser(id);
+        User.DeleteUser(id);
       }
       catch (Exception e)
       {
