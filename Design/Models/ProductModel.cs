@@ -56,7 +56,7 @@ namespace Models.ProductModel
     }
     public static void IsProductAvailable(int pid)
     {
-        WriteLine("Either returns searched quantity or returns empty");
+        WriteLine("Either returns searched product or returns empty");
     }
     public static void CreateProduct(Product data)
     {

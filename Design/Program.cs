@@ -6,7 +6,8 @@ using Models.ProductModel;
 
 using Controllers.UserController;
 using Controllers.ProductController;
-using Controller.CategoryController;
+using Controllers.CategoryController;
+using Controllers.CartController;
 
 namespace Programe
 {
@@ -53,6 +54,8 @@ namespace Programe
       productController.DeleteExistingProduct(1);
 
       var categoryController = new CategoryController();
+
+      var cartController = new CartController();
     }
   }
 }

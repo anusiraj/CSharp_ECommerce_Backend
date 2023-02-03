@@ -1,10 +1,14 @@
 using static System.Console;
 using Models.CategoryModel;
 
-namespace Controller.CategoryController
+namespace Controllers.CategoryController
 {
   public class CategoryController
   {
+    public CategoryController()
+    {
+
+    }
     public void DisplayAllCategories()
     {
       try
