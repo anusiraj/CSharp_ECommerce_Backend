@@ -1,74 +1,45 @@
+namespace Controllers;
+
 using static System.Console;
-using Models.CartModel;
+using Models;
+using DTOs;
+using Services;
 
-namespace Controllers.CartController
+public class CartController
 {
-  public class CartController
+  private readonly ICartService _service;
+
+  public CartController(ICartService service)
   {
-    public CartController()
-    {
+    _service = service;
+  }
 
-    }
-    public void DisplayCartItems()
-    {
-      try
-      {
-        Cart.GetAllCartItems();
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void IncrementProduct(int pid)
-    {
-      try
-      {
-        Cart.IncrementQuantity(pid);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void ProductRemoval(int pid)
-    {
-      try
-      {
-        Cart.RemoveProdcut(pid);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void TotalProduct(int pid)
-    {
-      try
-      {
-        Cart.TotalProducts();
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void FullAmount()
-    {
-      try
-      {
-        Cart.TotalAmount();
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-
+  //POST /api/cart
+  public async Task<Product> AddItemAsync(CartRequest request, User CurrentUser)
+  {
+    var task = await _service.AddItemAsync(request, CurrentUser);
+    return task;
+  }
+  //PUT /api/cart/{id}
+  public async Task<Product> IncrementItemAsync(int id, User CurrentUser)
+  {
+    var task = await _service.IncrementItemAsync(id, CurrentUser);
+    return task;
+  }
+  //PUT /api/cart/{id}
+  public async Task<Product> DecrementItemAsync(int id, User CurrentUser)
+  {
+    var task = await _service.DecrementItemAsync(id, CurrentUser);
+    return task;
+  }
+  //DELETE /api/cart/{id}
+  public async Task<bool> RemoveItemAsync(int id)
+  {
+    return await _service.RemoveItemAsync(id);
+  }
+  //GET /api/cart
+  public async Task<IEnumerable<Cart>> GetAllAsync(int id, User CurrentUser)
+  {
+    return await _service.GetAllAsync(id, CurrentUser);
   }
 }

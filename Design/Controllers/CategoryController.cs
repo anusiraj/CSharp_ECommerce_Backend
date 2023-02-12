@@ -1,37 +1,43 @@
+namespace Controllers;
+
 using static System.Console;
-using Models.CategoryModel;
+using Models;
+using DTOs;
+using Services;
 
-namespace Controllers.CategoryController
+public class CategoryController
 {
-  public class CategoryController
-  {
-    public CategoryController()
-    {
+  private readonly ICategoryService _service;
 
-    }
-    public void DisplayAllCategories()
-    {
-      try
-      {
-        Category.GetAllCategories();
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void DisplayProductsByCategory(int cid)
-    {
-      try
-      {
-        Category.GetProductsByCategory(cid);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
+  public CategoryController(ICategoryService service)
+  {
+    _service = service;
+  }
+
+  //POST /api/category
+  public async Task<Category> CreateAsync(CategoryRequest request, User CurrentUser)
+  {
+    var task = await _service.CreateAsync(request, CurrentUser);
+    return task;
+  }
+  //PUT /api/category/{id}
+  public async Task<Category> UpdateAsync(int id, CategoryRequest request, User CurrentUser)
+  {
+    return await _service.UpdateAsync(id, request, CurrentUser);
+  }
+  //DELETE /api/category/{id}
+  public async Task<bool> DeleteAsync(int id, User CurrentUser)
+  {
+    return await _service.DeleteAsync(id, CurrentUser);
+  }
+  //GET /api/category/{id}
+  public async Task<Category> GetAsync(int id)
+  {
+    return await _service.GetAsync(id);
+  }
+  //GET /api/category
+  public async Task<IEnumerable<Category>> GetAllAsync()
+  {
+    return await _service.GetAllAsync();
   }
 }

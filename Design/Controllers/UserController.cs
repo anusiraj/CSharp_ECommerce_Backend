@@ -1,99 +1,38 @@
-using static System.Console;
-using Enums.UserRole;
-using Models.UserModel;
+namespace Controllers;
 
-namespace Controllers.UserController
+using static System.Console;
+using Models;
+using DTOs;
+using Services;
+
+public class UserController
 {
-  public class UserController
+  private readonly IUserService _service;
+
+  public UserController(IUserService service)
   {
-    // public int Id {get; init;}
-    // public string FirstName{get; set;}
-    // public string LastName{get; set;}
-    // public string Email{get; set;}
-    // public string Password{get; set;}
-    // public string Image{get; set;}
-    // public UserRole Role{get; init;}
-    public void DisplayAllUser()
-    {
-      try
-      {
-        User.GetAllUser();
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void DisplaySingleUserById(int id)
-    {
-      try
-      {
-        User.GetUserById(id);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void DisplayUserByEmail(string email)
-    {
-      try
-      {
-        User.GetUserByEmail(email);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void DisplaUserRole(int id)
-    {
-      try
-      {
-        User.GetUserRole(id);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void CreateUser(User data)
-    {
-      try
-      {
-        User.CreateUser(data);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-      }
-    }
-    public void UpdateUser(int id)
-    {
-      try
-      {
-        User.UpdateUser(id);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-      }
-    }
-    public void DeleteUser(int id)
-    {
-      try
-      {
-        User.DeleteUser(id);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-      }
-    }
+    _service = service;
   }
 
+  //POST /api/user
+  public async Task<User> CreateAsync(UserRequest request)
+  {
+    var task = await _service.CreateAsync(request);
+    return task;
+  }
+  //PUT /api/user/{id}
+  public async Task<User> UpdateAsync(int id, UserRequest request)
+  {
+    return await _service.UpdateAsync(id, request);
+  }
+  //DELETE /api/user/{id}
+  public async Task<bool> DeleteAsync(int id)
+  {
+    return await _service.DeleteAsync(id);
+  }
+  //GET /api/user/{id}
+  public async Task<User> GetAsync(int id)
+  {
+    return await _service.GetAsync(id);
+  }
 }

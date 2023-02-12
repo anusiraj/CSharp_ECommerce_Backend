@@ -1,105 +1,43 @@
-using static System.Console;
-using Models.ProductModel;
+namespace Controllers;
 
-namespace Controllers.ProductController
+using static System.Console;
+using Models;
+using DTOs;
+using Services;
+
+public class ProductController
 {
-  public class ProductController
+  private readonly IProductService _service;
+
+  public ProductController(IProductService service)
   {
-    public void DisplayAllProducts()
-    {
-      try
-      {
-        Product.GetAllProducts();
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void DisplayProductById(int pid)
-    {
-      try
-      {
-        Product.GetProductById(pid);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void DisplayProductByName(string pname)
-    {
-      try
-      {
-        Product.GetProductByName(pname);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void SortProductByPrice()
-    {
-      try
-      {
-        Product.SortPoductsByPrice();
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void ProductQuantity(int pid)
-    {
-      try
-      {
-        Product.IsProductAvailable(pid);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void CreateNewProduct(Product data)
-    {
-      try
-      {
-        Product.CreateProduct(data);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void UpdateExistingProduct(int pid)
-    {
-      try
-      {
-        Product.UpdateProduct(pid);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
-    public void DeleteExistingProduct(int pid)
-    {
-      try
-      {
-        Product.DeleteProduct(pid);
-      }
-      catch (Exception e)
-      {
-        WriteLine(e.Message);
-        throw;
-      }
-    }
+    _service = service;
+  }
+
+  //POST /api/product
+  public async Task<Product> CreateAsync(ProductRequest request, User CurrentUser)
+  {
+    var task = await _service.CreateAsync(request, CurrentUser);
+    return task;
+  }
+  //PUT /api/product/{id}
+  public async Task<Product> UpdateAsync(int id, ProductRequest request, User CurrentUser)
+  {
+    return await _service.UpdateAsync(id, request, CurrentUser);
+  }
+  //DELETE /api/product/{id}
+  public async Task<bool> DeleteAsync(int id, User CurrentUser)
+  {
+    return await _service.DeleteAsync(id, CurrentUser);
+  }
+  //GET /api/product/{id}
+  public async Task<Product> GetAsync(int id)
+  {
+    return await _service.GetAsync(id);
+  }
+  //GET /api/product
+  public async Task<IEnumerable<Product>> GetAllAsync()
+  {
+    return await _service.GetAllAsync();
   }
 }
