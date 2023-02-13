@@ -9,4 +9,5 @@ public class Cart
   public int? Quantity { get; set; } = 1;
   public int? TotalQuantity { get; set; }
   public int? TotalPrice { get; set; }
+  public User User { get; set; }
 }
