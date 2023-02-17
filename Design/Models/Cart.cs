@@ -1,7 +1,5 @@
 namespace Models;
 
-using static System.Console;
-
 public class Cart
 {
   public int? ID { get; init; }

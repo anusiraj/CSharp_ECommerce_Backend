@@ -1,7 +1,5 @@
 namespace Models;
 
-using static System.Console;
-
 public class Product
 {
   public int ID { get; init; }
@@ -23,7 +21,7 @@ public class Product
 
   public override string ToString()
   {
-    return "Product ID:" + ID + " " + "Name" + Name + " " + "Category" + CategoryID + " " + "Price" + Price + "Description" + Descritption + " " +
-    " " + "Image" + Images[0] + " ";
+        return "Product ID:" + ID + " " + "Name" + Name + " " + "Category" + CategoryID + " " + "Price" + Price + "Description" + Descritption + " " +
+        " " + "Image" + Images[0] + " ";
   }
 }

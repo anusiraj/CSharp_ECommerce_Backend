@@ -1,8 +1,5 @@
 namespace Models;
 
-using static System.Console;
-using System;
-
 public class User
 {
   public int ID { get; init; }
@@ -25,7 +22,7 @@ public class User
 
   public override string ToString()
   {
-    return "User: " + FirstName + " " + LastName + "Email" + Email + "Role" + Role;
+        return "User: " + FirstName + " " + LastName + "Email" + Email + "Role" + Role;
   }
 }
 

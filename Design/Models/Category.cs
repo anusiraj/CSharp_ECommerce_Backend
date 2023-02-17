@@ -1,7 +1,5 @@
 namespace Models;
 
-using static System.Console;
-
 public class Category
 {
   public int ID { get; init; }
@@ -17,6 +15,6 @@ public class Category
 
   public override string ToString()
   {
-    return "Category ID:" + ID + " " + "Name" + Name + " " + "Image" + Image + " ";
+        return "Category ID:" + ID + " " + "Name" + Name + " " + "Image" + Image + " ";
   }
 }

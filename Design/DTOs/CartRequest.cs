@@ -2,6 +2,7 @@ namespace DTOs;
 
 using System.ComponentModel.DataAnnotations;
 using Models;
+
 public class CartRequest
 {
     [Required]
